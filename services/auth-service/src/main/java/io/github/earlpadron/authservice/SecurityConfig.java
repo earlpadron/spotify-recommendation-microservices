@@ -12,7 +12,9 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, DefaultOAuth2UserService defaultOAuth2UserService, CustomOAuth2UserService customOAuth2UserService) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   DefaultOAuth2UserService defaultOAuth2UserService,
+                                                   CustomOAuth2UserService customOAuth2UserService) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/error").permitAll() //allow all users to access /login and /error URL

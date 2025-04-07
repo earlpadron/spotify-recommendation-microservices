@@ -18,17 +18,17 @@ spring:
   security:
     oauth2:
       client:
-        registration:
+        registration: # define how the application identifies itself to OAuth provider
           spotify:
             client-id: b5e154f9940b43a5a1463a4cfd2ae708
             client-secret: 7feb21f0179449f68baea8920f000e8f
-            scope: user-library-read,user-read-recently-played,user-top-read
-            authorization-grant-type: authorization_code
-            client-authentication-method: client_secret_post
-            redirect-uri: "{baseUrl}/login/oauth2/code/spotify"
-        provider:
+            scope: user-library-read,user-read-recently-played,user-top-read # a comma-separated list of scopes(permissions) my app is requesting
+            authorization-grant-type: authorization_code # define the OAuth2.0 grant type(e.g., authorization_code, client_credentials, etc.)
+            client-authentication-method: client_secret_post # defines how the client authenticates with the provider(e.g., basic, post, none) default is basic
+            redirect-uri: "{baseUrl}/login/oauth2/code/spotify" # URI where the provider redirects after successful authentication
+        provider: # specifies how to talk to the OAuth provider - the endpoints involved in the OAuth flow
           spotify:
-            authorization-uri: https://accounts.spotify.com/authorize
-            token-uri: https://accounts.spotify.com/api/token
-            user-info-uri: https://api.spotify.com/v1/me
-            user-name-attribute: id
+            authorization-uri: https://accounts.spotify.com/authorize # URL where users are sent to log in(authorize)
+            token-uri: https://accounts.spotify.com/api/token # endpoint to exchange the auth code for an access token
+            user-info-uri: https://api.spotify.com/v1/me # endpoint to retrieve the user's profile (after access token is received)
+            user-name-attribute: id # id is the attribute name form the user info response that identifies the user
